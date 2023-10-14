@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="calc">
+        <div class="calc-form">
+          <form name="form" class="calc-form-display">
+            <input type="text" class="calc-display results-display" />
+          </form>
+        </div>
+        <table>
+          <tr>
+            <td><input type="button" value="CE" onclick="clearDisplay()" /></td>
+            <td><input type="button" value="Del" onclick="delDisplay()" /></td>
+            <td>
+              <input type="button" value="+" onclick="insertNumber('+')" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="button" value="-" onclick="insertNumber('-')" />
+            </td>
+            <td>
+              <input type="button" value="*" onclick="insertNumber('*')" />
+            </td>
+            <td>
+              <input type="button" value="/" onclick="insertNumber('/')" />
+            </td>
+          </tr>
+          <tr>
+            <td><input type="button" value="9" onclick="insertNumber(9)" /></td>
+            <td><input type="button" value="8" onclick="insertNumber(8)" /></td>
+            <td><input type="button" value="7" onclick="insertNumber(7)" /></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="6" onclick="insertNumber(6)" /></td>
+            <td><input type="button" value="5" onclick="insertNumber(5)" /></td>
+            <td><input type="button" value="4" onclick="insertNumber(4)" /></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="3" onclick="insertNumber(3)" /></td>
+            <td><input type="button" value="2" onclick="insertNumber(2)" /></td>
+            <td><input type="button" value="1" onclick="insertNumber(1)" /></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="0" onclick="insertNumber(0)" /></td>
+            <td>
+              <input type="button" value="." onclick="insertNumber('.')" />
+            </td>
+            <td><input type="button" value="=" onclick="equal()" /></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script>
+    function insertNumber(num) {
+      var calcDisplay = document.querySelector(".calc-display");
+      calcDisplay.value += num;
+    }
+
+    function equal() {
+      const valuee = document.querySelector(".calc-display").value;
+      let result = 0;
+      try {
+        result = eval(valuee);
+      } catch (error) {
+        result = "error";
+      }
+      const resultDisplay = document.querySelector(".results-display");
+      resultDisplay.value = result;
+    }
+
+    function clearDisplay() {
+      var calcDisplay = document.querySelector(".calc-display");
+      var resultDisplay = document.querySelector(".results-display");
+      calcDisplay.value = "";
+      resultDisplay.value = "";
+    }
+
+    function delDisplay() {
+      var calcDisplay = document.querySelector(".calc-display");
+      var value = calcDisplay.value;
+      calcDisplay.value = value.substring(0, value.length - 1);
+    }
+  </script>
+</html>
